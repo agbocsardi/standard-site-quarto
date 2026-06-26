@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: _site
+  preview:
+    port: 8888
+
+website:
+  title: "standard-site-quarto"
+  site-url: https://agbocsardi.github.io/standard-site-quarto/
+  repo-url: https://github.com/agbocsardi/standard-site-quarto
+  repo-subdir: docs
+  repo-actions: [edit, issue, source]
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - text: "Overview"
+        file: index.qmd
+      - text: "Examples"
+        file: examples.qmd
+      - text: "How it works"
+        file: how-it-works.qmd
+  page-footer:
+    center: "A one-way bridge from standard.site to Quarto."
+
+format:
+  html:
+    theme: cosmo
+    toc: true

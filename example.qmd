@@ -1,0 +1,16 @@
+---
+title: "standard-site-quarto — quick test"
+format: html
+---
+
+## Full inline document
+
+{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" >}}
+
+## Card mode
+
+{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" mode="card" >}}
+
+## Publication feed
+
+{{< standard-publication uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.publication/3mp6kwt3kmggd" limit="3" >}}

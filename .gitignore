@@ -1,0 +1,10 @@
+/.quarto/
+# rendered output
+example.html
+example_files/
+docs/_site/
+docs/.quarto/
+
+# Quarto intermediate caches and per-page mediabag output
+docs/.quarto/
+docs/*_files/

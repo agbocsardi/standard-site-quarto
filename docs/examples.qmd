@@ -1,0 +1,35 @@
+---
+title: "Examples"
+---
+
+Live examples, fetched from real standard.site records at the time this site was rendered.
+
+## A single document, in full
+
+Renders the title, cover, byline, tags, and the document's `textContent` body, with a canonical link to the original post.
+
+````markdown
+{{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" >}}}
+````
+
+{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" >}}
+
+## Compact card
+
+Set `mode="card"` for a compact reference card — useful when the document is a citation rather than the body you want to reproduce.
+
+````markdown
+{{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" mode="card" >}}}
+````
+
+{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" mode="card" >}}
+
+## A publication feed
+
+Lists a publication's documents as cards, newest first.
+
+````markdown
+{{{< standard-publication uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.publication/3mp6kwt3kmggd" limit="4" >}}}
+````
+
+{{< standard-publication uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.publication/3mp6kwt3kmggd" limit="4" >}}

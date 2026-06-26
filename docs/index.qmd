@@ -1,0 +1,33 @@
+---
+title: "standard-site-quarto"
+---
+
+A [Quarto](https://quarto.org) extension that embeds [standard.site](https://standard.site) publications and documents into your Quarto website — a **one-way, read-only bridge**. Give it an `at://` URI; at render time it fetches the record from the author's Personal Data Server and bakes it into static HTML.
+
+{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" >}}
+
+## Install
+
+```bash
+quarto add agbocsardi/standard-site-quarto
+```
+
+This adds the extension under your project's `_extensions/` directory. Commit that directory so your site is reproducible.
+
+## Quick start
+
+Embed a single document in full:
+
+````markdown
+{{{< standard-document uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.document/3mp6kwt3p6lk5" >}}}
+````
+
+Embed a publication's recent documents as a feed of cards:
+
+````markdown
+{{{< standard-publication uri="at://did:plc:qqcz624yyb7ruo4fxay5k7py/site.standard.publication/3mp6kwt3kmggd" limit="5" >}}}
+````
+
+Both shortcodes fetch at **build time**. The rendered site contains no JavaScript and makes no client-side network requests — the embed is part of the static output.
+
+See [Examples](examples.qmd) for more, and [How it works](how-it-works.qmd) for the fetch architecture.

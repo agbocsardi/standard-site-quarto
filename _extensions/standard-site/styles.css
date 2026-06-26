@@ -1,0 +1,82 @@
+/* standard-site extension — minimal, theme-respecting styling.
+   All colors use CSS variables so the embed inherits the host site. */
+
+.standard-site-publication,
+.standard-site-document,
+.standard-site-card {
+  font: inherit;
+  color: inherit;
+}
+
+.standard-site-document {
+  border-left: 3px solid var(--standard-site-accent, #4f7bff);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.standard-site-document .standard-site-cover {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.standard-site-title {
+  margin-bottom: 0.25rem;
+}
+
+.standard-site-tag {
+  display: inline-block;
+  font-size: 0.8em;
+  opacity: 0.75;
+  background: var(--standard-site-tag-bg, rgba(127, 127, 127, 0.15));
+  border-radius: 999px;
+  padding: 0.05em 0.5em;
+  margin-right: 0.25em;
+}
+
+.standard-site-canonical-label {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+/* Cards (feed + mode="card") */
+.standard-site-card {
+  display: block;
+  border: 1px solid var(--standard-site-border, rgba(127, 127, 127, 0.25));
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  transition: background 0.15s ease;
+}
+
+.standard-site-card:hover {
+  background: var(--standard-site-card-hover, rgba(127, 127, 127, 0.06));
+}
+
+.standard-site-card-cover {
+  max-width: 100%;
+  max-height: 12rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.standard-site-card-title {
+  margin: 0.25rem 0;
+}
+
+.standard-site-pub-name {
+  font-weight: 600;
+}
+
+/* Error block — shown in place of a failed embed, never aborts the build. */
+.standard-site-error {
+  border: 1px solid #d33;
+  background: #fdeaea;
+  color: #7a0e0e;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}

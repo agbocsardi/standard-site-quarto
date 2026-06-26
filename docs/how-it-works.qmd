@@ -1,0 +1,51 @@
+---
+title: "How it works"
+---
+
+## One-way, read-only
+
+This extension only *reads*. It never authenticates, never holds secrets, and never writes records. It is the consumer side of standard.site — the opposite of the publishing workflows most standard.site guides describe.
+
+## Why it reads directly from each PDS
+
+The Bluesky AppView (`public.api.bsky.app`) indexes `app.bsky.*` records. It does **not** index `site.standard.*` records — `getRecord` returns `RecordNotFound` and `listRecords` returns `MethodNotImplemented` for those collections.
+
+So every fetch takes two hops:
+
+1. **Resolve the DID to a PDS endpoint.** The shortcode parses `at://did:plc:…/site.standard.document/<rkey>`, then looks the DID up in the [PLC directory](https://plc.directory) to find its `#atproto_pds` service endpoint.
+2. **Fetch the record from that PDS.** Using `com.atproto.repo.getRecord` (single document), `com.atproto.repo.listRecords` (a publication's documents), or `com.atproto.sync.getBlob` (cover images).
+
+The PLC lookup and record lookup are cached for the duration of a render, so a single page embedding many documents by the same author pays each network cost once.
+
+## Build-time, not client-time
+
+Fetching happens during `quarto render`. The record (and any cover image) is written into the document and the pandoc mediabag, then baked into static HTML. The output site needs no JavaScript and makes no requests when a visitor loads the page.
+
+The trade-off is staleness: the embed reflects whatever the record held the last time you rendered. Re-render to refresh.
+
+## About `textContent`
+
+The standard.site `content` field is an **open union** — each platform invents its own block types (pckt uses `blog.pckt.content` blocks, others differ). There is no single format an extension can render.
+
+For a cross-platform embed, this extension renders `textContent`, the plain-text representation the schema asks every document to provide. Rich native-block rendering is a possible future feature; for now `textContent` is the reliable body.
+
+## Options
+
+### `{{{< standard-document >}}}`
+
+| Option | Default | Description |
+|---|---|---|
+| `uri` *(required)* | — | An `at://…/site.standard.document/<rkey>` URI. |
+| `mode` | `full` | `full` renders the body inline; `card` renders a compact card. |
+| `show-cover` | `true` | Set to `false` to suppress the cover image in `full` mode. |
+
+### `{{{< standard-publication >}}}`
+
+| Option | Default | Description |
+|---|---|---|
+| `uri` *(required)* | — | An `at://…/site.standard.publication/<rkey>` URI. |
+| `limit` | `10` | Maximum number of document cards to list. |
+
+## Finding a URI
+
+The canonical way to discover a document's `at://` URI is the `<link rel="site.standard.document" href="at://…">` tag in the document page's HTML head. A publication's URI lives in the domain's `/.well-known/site.standard.publication` file. You can also browse records at [PDSLs](https://pdsls.dev).
